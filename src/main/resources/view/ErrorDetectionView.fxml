@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
+<AnchorPane cache="true" minHeight="750.0" minWidth="900.0" prefHeight="750.0" prefWidth="902.0"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="com.controller.ErrorDetectionController">
+    <Label fx:id="methodChoiceLabel" layoutX="16.0" layoutY="27.0" text="Wybierz metodę detekcji\korekcji:"/>
+    <RadioButton fx:id="crcRadioButton" layoutX="246.0" layoutY="28.0" mnemonicParsing="false"
+                 onAction="#crcRadioButtonActionPerformed" text="CRC"/>
+    <RadioButton fx:id="hammingRadioButton" layoutX="499.0" layoutY="27.0" mnemonicParsing="false"
+                 onAction="#hammingRadioButtonActionPerformed" text="Kodowanie Hamminga"/>
+    <RadioButton fx:id="parityRadioButton" layoutX="725.0" layoutY="27.0" mnemonicParsing="false"
+                 onAction="#parityRadioButtonActionPerformed" text="Bit Parzystości"/>
+    <ComboBox fx:id="crcComboBox" disable="true" layoutX="331.0" layoutY="23.0"
+              onAction="#crcComboBoxActionPerformed" prefHeight="26.0" prefWidth="130.0"/>
+    <Separator layoutY="71.0" prefHeight="3.0" prefWidth="900.0"/>
+    <Label fx:id="inputDataLabel" layoutX="14.0" layoutY="100.0" text="Dane wejściowe:"/>
+    <Label fx:id="transmitterDataLabel" layoutX="14.0" layoutY="154.0" text="Dane zakodowane:"/>
+    <TextArea fx:id="inputData" layoutX="247.0" layoutY="89.0" minWidth="478.0" prefHeight="38.0" wrapText="true"/>
+    <TextArea fx:id="transmitterData" editable="false" layoutX="247.0" layoutY="143.0" minWidth="478.0"
+              prefHeight="38.0" wrapText="true"/>
+    <Button fx:id="generateButton" layoutX="37.0" layoutY="202.0" mnemonicParsing="false"
+            onAction="#generateButtonActionPerformed" text="Zgeneruj"/>
+    <Button fx:id="encodeButton" layoutX="126.0" layoutY="202.0" mnemonicParsing="false"
+            onAction="#encodeButtonActionPerformed" text="Zakoduj"/>
+    <Slider fx:id="generateNumberSlider" blockIncrement="8.0" layoutX="247.0" layoutY="196.0" majorTickUnit="8.0"
+            max="96.0" min="8.0" minWidth="-Infinity" minorTickCount="8" prefHeight="38.0" prefWidth="476.0"
+            showTickLabels="true" showTickMarks="true" snapToTicks="true"/>
+    <TextArea fx:id="receivedData" editable="false" layoutX="247.0" layoutY="270.0" prefHeight="38.0"
+              wrapText="true"/>
+    <Button fx:id="interfereButton" layoutX="246.0" layoutY="325.0" mnemonicParsing="false"
+            onAction="#interfereButtonActionPerformed" prefHeight="26.0" prefWidth="70.0" text="Zakłóć"/>
+    <Spinner fx:id="interferencesNumberSpinner" editable="true" layoutX="324.0" layoutY="324.0" prefHeight="26.0"
+             prefWidth="100.0"/>
+    <Separator layoutY="246.0" prefHeight="3.0" prefWidth="900.0"/>
+    <Separator layoutY="366.0" prefHeight="3.0" prefWidth="900.0"/>
+    <Button fx:id="decodeButton" layoutX="247.0" layoutY="377.0" mnemonicParsing="false"
+            onAction="#decodeButtonActionPerformed" prefHeight="26.0" prefWidth="84.0" text="Dekoduj"/>
+    <Label fx:id="correctedDataLabel" layoutX="11.0" layoutY="425.0" text="Zakodowane dane po korekcji:"/>
+    <Label fx:id="outputDataLabel" layoutX="14.0" layoutY="475.0" text="Dane wyjściowe:"/>
+    <Label fx:id="outputStringDataLabel" layoutX="12.0" layoutY="526.0" text="String wyjściowy:"/>
+    <TextArea fx:id="outputData" editable="false" layoutX="247.0" layoutY="464.0" minWidth="478.0" prefHeight="35.0"
+              wrapText="true"/>
+    <TextArea fx:id="outputString" editable="false" layoutX="247.0" layoutY="515.0" minWidth="478.0"
+              prefHeight="35.0" wrapText="true"/>
+    <Separator layoutX="2.0" layoutY="574.0" prefHeight="3.0" prefWidth="900.0"/>
+    <Label fx:id="summaryLabel" layoutX="14.0" layoutY="598.0" text="Podsumowanie:"/>
+    <Label fx:id="dataBitsLabel" layoutX="184.0" layoutY="615.0" text="Przesłane bity:"/>
+    <Label fx:id="controlBitsLabel" layoutX="184.0" layoutY="652.0" text="Przesyłane bity nadmiarowe:"/>
+    <Label fx:id="notDetectedErrorsLabel" layoutX="479.0" layoutY="652.0" text="Błędy niewykryte:"/>
+    <Label fx:id="detectedErrorsLabel" layoutX="184.0" layoutY="687.0" text="Błędy wykryte:"/>
+    <Label fx:id="fixedErrorsLabel" layoutX="479.0" layoutY="615.0" text="Błędy skorygowane:"/>
+    <Button fx:id="clearButton" layoutX="614.0" layoutY="682.0" mnemonicParsing="false"
+            onAction="#clearButtonActionPerformed" prefHeight="26.0" prefWidth="90.0" text="Wyczyść"/>
+    <TextField fx:id="dataBits" layoutX="380.0" layoutY="611.0" prefHeight="26.0" prefWidth="90.0"/>
+    <TextField fx:id="controlBits" layoutX="379.0" layoutY="647.0" prefHeight="26.0" prefWidth="90.0"/>
+    <TextField fx:id="detectedErrors" layoutX="379.0" layoutY="684.0" prefHeight="26.0" prefWidth="90.0"/>
+    <TextField fx:id="fixedErrors" layoutX="614.0" layoutY="611.0" prefHeight="26.0" prefWidth="90.0"/>
+    <TextField fx:id="notDetectedErrors" layoutX="614.0" layoutY="647.0" prefHeight="26.0" prefWidth="90.0"/>
+    <Label fx:id="receivedDataLabel" layoutX="16.0" layoutY="281.0" text="Przesłane dane zakodowane:"/>
+    <ScrollPane fitToWidth="true" layoutX="247.0" layoutY="415.0" prefWidth="596.0">
+        <TextFlow fx:id="correctedData" prefHeight="40.0" prefWidth="594.0"
+                  style="-fx-background-color: white; -fx-background-radius: 2; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 0, 25, 0, 0);"/>
+    </ScrollPane>
+</AnchorPane>
